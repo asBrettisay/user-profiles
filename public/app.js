@@ -14,10 +14,26 @@ angular.module('userProfiles', ['ui.router'])
 		controller: 'profileCtrl',
 		resolve: {
 			userInfo: function( friendService ) {
-				/* FIX ME */
+				return friendService.getFriends().then(function(res) {
+					return res.data;
+				});
 			}
 		}
-	});
+	})
+	.state('index', {
+		url: '/index',
+		templateUrl: './views/profile.html',
+		controller: function($scope, users) {
+			$scope.friends = users;
+		},
+		resolve: {
+			users: function(friendService) {
+				return friendService.getUsers().then(function(data) {
+					return data.data;
+				})
+			}
+		}
+	})
 
 	$urlRouterProvider.otherwise('/');
 
