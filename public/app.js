@@ -10,7 +10,7 @@ angular.module('userProfiles', ['ui.router'])
 	})
 	.state('profile', {
 		url: '/profile',
-		'templateUrl': './views/profile.html',
+		templateUrl: './views/profile.html',
 		controller: 'profileCtrl',
 		resolve: {
 			userInfo: function( friendService ) {
@@ -20,17 +20,27 @@ angular.module('userProfiles', ['ui.router'])
 			}
 		}
 	})
-	.state('index', {
-		url: '/index',
-		templateUrl: './views/profile.html',
-		controller: function($scope, users) {
-			$scope.friends = users;
-		},
+	.state('profile.friends', {
+		templateUrl: './views/friends.html',
+	})
+	.state('profile.index', {
+		templateUrl: './views/friendIndex.html',
+		controller: 'indexCtrl',
 		resolve: {
 			users: function(friendService) {
 				return friendService.getUsers().then(function(data) {
 					return data.data;
 				})
+			}
+		}
+	})
+	.state('profile.settings', {
+		url: '/settings',
+		templateUrl: './views/settings.html',
+		controller: 'settingsCtrl',
+		resolve: {
+			userProfile: function(friendService) {
+				return friendService.getUserProfile()
 			}
 		}
 	})

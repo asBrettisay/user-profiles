@@ -1,0 +1,9 @@
+<div class="friends">
+  <ul ng-repeat="friend in friends">
+    <img ng-src="{{ friend.pic }}">
+    <li class="bolded">{{ friend.name }}</li>
+    <li>{{ friend.status }}</li>
+    <hr>
+    <button ng-click="addFriend(friend)">Add Friend</button>
+  </ul>
+</div>

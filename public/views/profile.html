@@ -10,24 +10,18 @@
     </a>
   </div>
 
+
   <div class="container">
     <div class="profile">
       <ul>
         <li class="bolded">{{ currentUser.name }}</li>
-        <a ui-sref="index"><li>Find New Friends</li></a>
+        <a ui-sref="profile.index"><li>Find New Friends</li></a>
+        <a ui-sref="profile.settings"><li>Settings</li></a>
       </ul>
     </div>
 
 
-    <div class="friends">
-      <ul ng-repeat="friend in friends">
-        <img ng-src="{{ friend.pic }}">
-        <li class="bolded">{{ friend.name }}</li>
-        <li>{{ friend.status }}</li>
-        <hr>
-      </ul>
-    </div>
-  </div>
+  <ui-view></ui-view>
 
   <!--
   <div class="credit">

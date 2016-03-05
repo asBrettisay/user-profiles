@@ -1,0 +1,11 @@
+<div class="friends">
+  <h1>Update your settings</h1>
+  <form novalidate class="settingsForm">
+    Name: <input type="text" ng-model="userProfile.name" /><br>
+    Password: <input type="text" ng-model="user.password" /><br>
+    Pic: <input type="text" ng-model="userProfile.pic" /><br>
+    Status: <input type="text" ng-model="userProfile.status" /><br>
+    <input type="submit" ng-click="update(user, userProfile)" value="Save" />
+
+  </form>
+</div>

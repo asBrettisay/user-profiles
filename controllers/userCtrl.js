@@ -5,6 +5,11 @@ var users = [
     friends: ['Lindsey Mayer', 'Terri Ruff']
   },
   {
+    name: 'Brett Caudill',
+    password: 'p',
+    friends: ['Preston McNeil', 'Ryan Rasmussen']
+  },
+  {
     name: 'Ryan Rasmussen',
     password: '$akgfl#',
     friends: ['Lindsey Mayer']
@@ -23,14 +28,30 @@ var users = [
 
 module.exports = {
   login: function(req, res, next) {
-    console.log(req.body);
     var userFound = false;
     users.forEach(function(user) {
-      if (req.body.name === user.userName && req.body.password === user.password) {
+      if (req.body.name === user.name && req.body.password === user.password) {
         req.session.currentUser = user;
         userFound = true;
       }
     })
     res.send({userFound: userFound});
+  },
+
+  addFriend: function(req, res, next) {
+    req.session.currentUser.friends.push(req.body.name)
+    res.send();
+  },
+
+  update: function(req, res, next) {
+    var updateSuccess = false;
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].name === req.session.currentUser.name) {
+        users[i] = req.body;
+        updateSuccess = true;
+      }
+    }
+    console.log(users);
+    res.json(users);
   }
 }

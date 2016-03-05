@@ -28,8 +28,13 @@ app.use(session({
 
 app.get('/api/profiles', profile.show);
 app.get('/api/profiles/index', profile.index);
+app.get('/api/profiles/profile', profile.showUserProfile);
 
 app.post('/api/login', user.login);
+app.post('/api/profiles/add', user.addFriend);
+
+app.put('/api/profiles/', profile.update);
+app.put('/api/profiles/user', user.update);
 
 app.listen(8001, function() {
   console.log('Long live the King of the North!')
