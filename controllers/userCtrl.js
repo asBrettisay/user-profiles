@@ -49,9 +49,9 @@ module.exports = {
       if (users[i].name === req.session.currentUser.name) {
         users[i] = req.body;
         updateSuccess = true;
+        req.session.currentUser = users[i]
       }
     }
-    console.log(users);
-    res.json(users);
+    res.json({updateSuccess: updateSuccess});
   }
 }

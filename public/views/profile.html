@@ -14,7 +14,7 @@
   <div class="container">
     <div class="profile">
       <ul>
-        <li class="bolded">{{ currentUser.name }}</li>
+        <a ui-sref="profile.friends"><li class="bolded">{{ currentUser.name }}</li></a>
         <a ui-sref="profile.index"><li>Find New Friends</li></a>
         <a ui-sref="profile.settings"><li>Settings</li></a>
       </ul>

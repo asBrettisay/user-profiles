@@ -3,8 +3,8 @@ angular.module('userProfiles')
   $scope.user = userInfo.currentUser;
   $scope.userProfile = userProfile;
 
-  $scope.update = function(user) {
-    friendService.updateProfile(user).then(function(res) {
+  $scope.update = function(user, userProfile) {
+    friendService.updateProfile(user, userProfile).then(function(res) {
       $state.go('profile.friends', $stateParams, {reload: true});
     })
   }

@@ -64,6 +64,6 @@ module.exports = {
         status = true;
       }
     }
-    res.json({"User Found": status});
+    res.json({userFound: status});
   }
 }

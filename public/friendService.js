@@ -1,5 +1,5 @@
 angular.module('userProfiles')
-.factory('friendService', function( $http ) {
+.factory('friendService', function( $http, $q ) {
   return {
 
     login: function( user ) {
@@ -42,17 +42,20 @@ angular.module('userProfiles')
     },
 
     updateProfile: function(user, userProfile) {
-      return $http({
+      user.name = userProfile.name;
+      var userP = $http({
         method: 'PUT',
         url: '/api/profiles/user',
         data: user
       })
 
-      $http({
+      var profileP = $http({
         method: 'PUT',
         url: '/api/profiles',
         data: userProfile
       })
+
+      return $q.all([userP, profileP]);
     }
   }
 });
